@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private fun goToProfilActivity() {
         val intent = Intent(this, ProfilActivity::class.java)
         startActivity(intent)
-
     }
 }
 
