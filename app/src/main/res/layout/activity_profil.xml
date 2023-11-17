@@ -156,11 +156,5 @@
                 android:text="TELEPON"/>
         </LinearLayout>
     </RelativeLayout>
-    android {
-    ...
-    viewBinding {
-    enabled = true
-    }
-    ...
-    }
+
 </ScrollView>

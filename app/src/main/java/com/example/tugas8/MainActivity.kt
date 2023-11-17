@@ -2,14 +2,9 @@ package com.example.tugas8
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tugas8.ActivityMainBinding
+import com.example.tugas8.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding : ActivityMainBinding
