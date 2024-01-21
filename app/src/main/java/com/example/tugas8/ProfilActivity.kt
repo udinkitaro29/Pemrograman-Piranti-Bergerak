@@ -20,6 +20,7 @@ class ProfilActivity : AppCompatActivity() {
         ambilData()
 
         profilBinding.btnEditName.setOnClickListener { navigasiKeEditProfil() }
+        profilBinding.btnEditAll.setOnClickListener { navigasiKeEditAll() }
         profilBinding.btnCall.setOnClickListener { dialPhoneNumber(profilBinding.txtTelp.text.toString()) }
 
     }
@@ -45,16 +46,44 @@ class ProfilActivity : AppCompatActivity() {
         intent.putExtra("nama", namaUser)
         resultLauncher.launch(intent)
     }
+    private fun navigasiKeEditAll() {
+        val intent = Intent(this, EditAllActivity::class.java)
+        val namaUser = profilBinding.txtName.text.toString()
+        val genderUser = profilBinding.txtGender.text.toString()
+        val emailUser = profilBinding.txtEmail.text.toString()
+        val telpUser = profilBinding.txtTelp.text.toString()
+        val alamatUser = profilBinding.txtAddress.text.toString()
+
+        intent.putExtra("nama", namaUser)
+        intent.putExtra("gender", genderUser)
+        intent.putExtra("email", emailUser)
+        intent.putExtra("telp", telpUser)
+        intent.putExtra("alamat", alamatUser)
+
+        resultLauncher.launch(intent)
+    }
+
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val resultData = result.data?.getStringExtra("nama")
-                profilBinding.txtName.text = resultData
+                val resultData = result.data
+                val nama = resultData?.getStringExtra("nama")
+                val gender = resultData?.getStringExtra("gender")
+                val email = resultData?.getStringExtra("email")
+                val telp = resultData?.getStringExtra("telp")
+                val alamat = resultData?.getStringExtra("alamat")
+
+                profilBinding.txtName.text = nama
+                profilBinding.txtGender.text = gender
+                profilBinding.txtEmail.text = email
+                profilBinding.txtTelp.text = telp
+                profilBinding.txtAddress.text = alamat
             } else {
                 Toast.makeText(this, "Edit failed", Toast.LENGTH_SHORT).show()
             }
         }
+
 
     private fun dialPhoneNumber(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
